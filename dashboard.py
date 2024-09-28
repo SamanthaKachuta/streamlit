@@ -17,5 +17,5 @@ if fl is not None:
     st.write(filename)
     df = pd.read_csv(filename, encoding= "ISO-8859-1")
 else:
-    os.chdir(r"C:\Users\ze9031311\Desktop\Streamlit")
+    os.chdir(r"C:\Users\ze9031311\Documents\Streamlit")
     df = pd.read_csv("Superstore.csv", encoding = "ISO-8859-1")
