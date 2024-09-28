@@ -88,3 +88,20 @@ with col2:
     fig = px.pie(filtered_df, values="Sales", names= "Region", hole= 0.5)
     fig.update_traces(text=filtered_df["Region"],textposition = "outside")
     st.plotly_chart(fig,use_container_width=True)
+    
+cl1, cl2 = st.columns(2)
+with cl1:
+    with st.expander("Category_ViewData"):
+        st.write(category_df.style.background_gradient(cmap="Blues"))
+        csv = category_df.to_csv(index = False).encode('utf-8')
+        st.download_button("Download Data", data = csv, file_name = "Category.csv", mime = "text/csv",
+                            help = 'Click here to download the data as a CSV file')
+
+with cl2:
+     with st.expander("Region_ViewData"):
+         region = filtered_df.groupby(by = "Region", as_index = False)["Sales"].sum()
+         st.write(region.style.background_gradient(cmap="Oranges"))
+         csv = region.to_csv(index = False).encode('utf-8')
+         st.download_button("Download Data", data = csv, file_name = "Region.csv", mime = "text/csv",
+                         help = 'Click here to download the data as a CSV file')
+
